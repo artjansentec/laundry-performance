@@ -3,7 +3,7 @@ import desmoj.core.simulator.Model;
 import desmoj.core.simulator.TimeSpan;
 
 public class MaquinaLavar extends Entity{
-	
+	int clienteNumber = 0;
 	/**
 	 * ocupada: variável booleana que indica se a máquina de lavar está ocupada,
 	 * sendo utilizada por algum cliente da lavanderia;
@@ -51,7 +51,9 @@ public class MaquinaLavar extends Entity{
     * um cliente (passado como parâmetro) e escalonar o evento responsável pela liberação dessa máquina de lavar. 
     */
    public void lavar(Cliente cliente) {
-	   
+	   // A máquina de lavar passa a estar ocupada, pois está servindo um cliente.
+	   clienteNumber++;
+	   System.out.println("numero de clientes: " + clienteNumber);
 	   Lavanderia modeloLavanderia;
 	   double tempoLavagem;
 	   EventoTerminoLavagem eventoTerminoLavagem;
