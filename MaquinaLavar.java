@@ -16,6 +16,8 @@ public class MaquinaLavar extends Entity{
 	 * caso a máquina de lavar esteja ocupada.
 	 */
 	private Cliente cliente;
+
+	public double tempoTotalOcupada = 0.0;
 	
    /**
    * Método construtor da MaquinaLavar.
@@ -53,7 +55,6 @@ public class MaquinaLavar extends Entity{
    public void lavar(Cliente cliente) {
 	   // A máquina de lavar passa a estar ocupada, pois está servindo um cliente.
 	   clienteNumber++;
-	   System.out.println("numero de clientes: " + clienteNumber);
 	   Lavanderia modeloLavanderia;
 	   double tempoLavagem;
 	   EventoTerminoLavagem eventoTerminoLavagem;
@@ -71,6 +72,8 @@ public class MaquinaLavar extends Entity{
 	   tempoLavagem = modeloLavanderia.getTempoLavagem();
 	   modeloLavanderia.sendTraceNote(this + " serve " + cliente + " por " + tempoLavagem + " minutos.");
 	   
+		this.tempoTotalOcupada += tempoLavagem;
+
 	   // O evento correspondente ao término da lavagem das roupas desse cliente da lavanderia, por essa máquina de lavar, é criado...
 	   eventoTerminoLavagem = new EventoTerminoLavagem(modeloLavanderia, "Evento relacionado ao término da lavagem das roupas do cliente", true);
 	   // e escalonado.

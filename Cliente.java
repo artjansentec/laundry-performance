@@ -5,7 +5,7 @@ import desmoj.core.simulator.TimeInstant;
 public class Cliente extends Entity{
 
 	// Variavel responsável por armazenar o início do tempo de resposta do cliente.
-	private double inicioTempoResposta;
+	public double inicioTempoResposta;
 	
 	/**
 	 * Método construtor do Cliente.

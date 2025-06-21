@@ -36,8 +36,12 @@ public class EventoTerminoLavagem extends EventOf2Entities<MaquinaLavar, Cliente
 	public void eventRoutine(MaquinaLavar maquinaLavar, Cliente cliente) {
 		// Identificação do modelo ao qual o evento relacionado ao término da lavagem de roupas do cliente pertence.
 		Lavanderia modeloLavanderia = (Lavanderia) getModel();
-		
+		double tempoFim = modeloLavanderia.presentTime().getTimeAsDouble();
+
 		modeloLavanderia.sendTraceNote(maquinaLavar + " terminou a lavagem de roupas.");
+		double tempoGasto = tempoFim - cliente.inicioTempoResposta;
+
+		modeloLavanderia.somaTempoTotalClientes = tempoGasto;
 		
 		// A máquina de lavar que foi utilizada pelo cliente para lavar suas roupas deve ser liberada.
 		modeloLavanderia.liberarMaquinaLavar(maquinaLavar);		

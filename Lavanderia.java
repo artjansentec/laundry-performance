@@ -10,18 +10,23 @@ public class Lavanderia extends Model{
 	
 	// Definição do tempo de simulação.
 	private static double tempoSimulacao = 5000;
-	
+
+	static public double somaTamanhoFila = 0;
+	static public int totalMedicoesFila = 0;
+
+
+	static double somaTempoTotalClientes = 0.0;
 	/**
 	 * filaClientes: variável responsável por armazenar todos os clientes
 	 * que estão aguardando a máquina de lavar ser liberada para utilizarem-na.
 	 */
-	private Queue<Cliente> filaClientes;
+	public Queue<Cliente> filaClientes;
 	
 	/**
 	 * maquinaLavar: entidade responsável por servir os clientes da lavanderia,
 	 * lavando suas roupas.
 	 */
-	private MaquinaLavar maquinaLavar;
+	private static MaquinaLavar maquinaLavar;
 	
 	/**
 	 * distribuicaoTempoChegadasClientes: distribuição do tempo entre chegadas sucessivas de
@@ -221,6 +226,8 @@ public class Lavanderia extends Model{
 			 * entra em uma fila de espera para utilizar a máquina de lavar.
 			 */
 			filaClientes.insert(cliente);
+			somaTamanhoFila += filaClientes.size();
+			totalMedicoesFila++;
 		}
 	}
 
@@ -253,6 +260,10 @@ public class Lavanderia extends Model{
 			cliente = filaClientes.first();
 			filaClientes.remove(cliente);
 			
+			somaTamanhoFila += filaClientes.size();
+			totalMedicoesFila++;
+
+
 			// Utilização da máquina de lavar-roupas pelo primeiro cliente da fila de espera.
 			maquinaLavar.lavar(cliente);
 		}
@@ -292,6 +303,25 @@ public class Lavanderia extends Model{
 
 		// Interrompe todos os eventos que ainda estão escalonados e fecha todos os arquivos de saída.
 		experimento.finish();
+
+
+		double utilizacao = maquinaLavar.tempoTotalOcupada / tempoSimulacao;
+		System.out.println("Tempo total ocupado: " + maquinaLavar.tempoTotalOcupada + " minutos");
+		System.out.println("Número total de clientes atendidos: " + maquinaLavar.clienteNumber);
+		System.out.println("A)Utilização da máquina: " + (utilizacao * 100) + "%");
+
+		if (totalMedicoesFila > 0) {
+			double mediaFila = somaTamanhoFila / totalMedicoesFila;
+			System.out.println("B) Tamanho médio da fila: " + String.format("%.2f", mediaFila));
+		} else {
+			System.out.println("B) Nenhuma medição da fila foi feita.");
+		}
+
+		System.out.println("C) Tempo médio dos clientes: " + (somaTempoTotalClientes / maquinaLavar.clienteNumber) + " segundos");
+
+		System.out.println("D) Throughput: " + maquinaLavar.clienteNumber / tempoSimulacao + " clientes por segundo");
+
+
 		   
 	}
 }
