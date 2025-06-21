@@ -306,20 +306,21 @@ public class Lavanderia extends Model{
 
 
 		double utilizacao = maquinaLavar.tempoTotalOcupada / tempoSimulacao;
-		System.out.println("Tempo total ocupado: " + maquinaLavar.tempoTotalOcupada + " segundos");
-		System.out.println("Número total de clientes atendidos: " + maquinaLavar.clienteNumber);
-		System.out.println("A)Utilização da máquina: " + (utilizacao * 100) + "%");
+		System.out.println("\n------------------- Resultados -------------------");
+		System.out.println("\n Tempo total ocupado: " + maquinaLavar.tempoTotalOcupada + " segundos");
+		System.out.println("\n Número total de clientes atendidos: " + maquinaLavar.clienteNumber);
+		System.out.println("\nA) Utilização da máquina: " + (utilizacao * 100) + " %");
 
 		if (totalMedicoesFila > 0) {
 			double mediaFila = somaTamanhoFila / totalMedicoesFila;
-			System.out.println("B) Tamanho médio da fila: " + String.format("%.2f", mediaFila));
+			System.out.println("\nB) Tamanho médio da fila: " + String.format("%.2f", mediaFila) + " clientes");
 		} else {
-			System.out.println("B) Nenhuma medição da fila foi feita.");
+			System.out.println("\nB) Nenhuma medição da fila foi feita.");
 		}
 
-		System.out.println("C) Tempo médio dos clientes: " + (somaTempoTotalClientes / maquinaLavar.clienteNumber) + " segundos");
+		System.out.println("\nC) Tempo médio dos clientes: " + (somaTempoTotalClientes / maquinaLavar.clienteNumber) + " segundos");
 
-		System.out.println("D) Throughput: " + maquinaLavar.clienteNumber / tempoSimulacao + " clientes por segundo");
+		System.out.println("\nD) Throughput: " + maquinaLavar.clienteNumber / tempoSimulacao + " clientes por segundo");
 
 
 		   
