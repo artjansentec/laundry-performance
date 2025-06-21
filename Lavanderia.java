@@ -321,8 +321,6 @@ public class Lavanderia extends Model{
 		System.out.println("\nC) Tempo médio dos clientes: " + (somaTempoTotalClientes / maquinaLavar.clienteNumber) + " segundos");
 
 		System.out.println("\nD) Throughput: " + maquinaLavar.clienteNumber / tempoSimulacao + " clientes por segundo");
-
-
 		   
 	}
 }
