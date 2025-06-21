@@ -306,7 +306,7 @@ public class Lavanderia extends Model{
 
 
 		double utilizacao = maquinaLavar.tempoTotalOcupada / tempoSimulacao;
-		System.out.println("Tempo total ocupado: " + maquinaLavar.tempoTotalOcupada + " minutos");
+		System.out.println("Tempo total ocupado: " + maquinaLavar.tempoTotalOcupada + " segundos");
 		System.out.println("Número total de clientes atendidos: " + maquinaLavar.clienteNumber);
 		System.out.println("A)Utilização da máquina: " + (utilizacao * 100) + "%");
 
